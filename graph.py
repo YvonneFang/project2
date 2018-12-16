@@ -16,7 +16,7 @@ def testquery(client):
 # SQL query for Question 1. You must edit this funtion.
 # This function should return a list of IDs and the corresponding text.
 def q1(client):
-    q1 = """select id,text from `w4111-columbia.graph.tweets` where text LIKE '%going live%www.twitch%' OR text LIKE '%www.twitch%going live%'"""
+    q1 = """select id from `w4111-columbia.graph.tweets` where text LIKE '%going live%www.twitch%' OR text LIKE '%www.twitch%going live%'"""
     job = client.query(q1)
     
     results = job.result()
@@ -26,7 +26,7 @@ def q1(client):
 # This function should return a list of days and their corresponding average likes.
 def q2(client):
     # Select the first 3 letters in create_time, which is the day
-    q2 = """select substr(create_time, 1, 3) as day from `w4111-columbia.graph.tweets` limit 3"""
+    q2 = """select substr(create_time, 1, 3) as day from `w4111-columbia.graph.tweets` group by day order by sum(like_num)/count(*) as avg_likes DESC limit 1"""
     job = client.query(q2)
     
     results = job.result()
