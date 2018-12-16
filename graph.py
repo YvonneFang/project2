@@ -25,7 +25,7 @@ def q1(client):
 # SQL query for Question 2. You must edit this funtion.
 # This function should return a list of days and their corresponding average likes.
 def q2(client):
-    q2 = """
+    
     return []
 
 # SQL query for Question 3. You must edit this funtion.
