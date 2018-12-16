@@ -25,7 +25,7 @@ def q1(client):
 # SQL query for Question 2. You must edit this funtion.
 # This function should return a list of days and their corresponding average likes.
 def q2(client):
-
+    q2 = """
     return []
 
 # SQL query for Question 3. You must edit this funtion.
@@ -157,8 +157,8 @@ def main(pathtocred):
     client = bigquery.Client.from_service_account_json(pathtocred)
 
     #funcs_to_test = [q1, q2, q3, q4, q5, q6, q7]
-    #funcs_to_test = [testquery]
-    funcs_to_test = [q1]
+    funcs_to_test = [testquery]
+    #funcs_to_test = [q2]
     for func in funcs_to_test:
         rows = func(client)
         print ("\n====%s====" % func.__name__)
