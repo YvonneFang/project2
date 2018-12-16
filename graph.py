@@ -1,8 +1,8 @@
 import click
 from google.cloud import bigquery
 
-uni1 = '' # Your uni
-uni2 = '' # Partner's uni. If you don't have a partner, put None
+uni1 = 'yf2486' # Your uni
+uni2 = 'None' # Partner's uni. If you don't have a partner, put None
 
 # Test function
 def testquery(client):
@@ -16,7 +16,7 @@ def testquery(client):
 # SQL query for Question 1. You must edit this funtion.
 # This function should return a list of IDs and the corresponding text.
 def q1(client):
-
+    SELECT
     return []
 
 # SQL query for Question 2. You must edit this funtion.
@@ -154,7 +154,8 @@ def main(pathtocred):
     client = bigquery.Client.from_service_account_json(pathtocred)
 
     #funcs_to_test = [q1, q2, q3, q4, q5, q6, q7]
-    funcs_to_test = [testquery]
+    #funcs_to_test = [testquery]
+    funcs_to_test = [q1]
     for func in funcs_to_test:
         rows = func(client)
         print ("\n====%s====" % func.__name__)
