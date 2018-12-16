@@ -26,7 +26,7 @@ def q1(client):
 # This function should return a list of days and their corresponding average likes.
 def q2(client):
     # Select the first 3 letters in create_time, which is the day
-    q2 = """select substr(create_time, 1, 3) as day from `w4111-columbia.graph.tweets` group by day order by sum(like_num)/count(*) as avg_likes DESC limit 1"""
+    q2 = """select substr(create_time, 1, 3) as day from `w4111-columbia.graph.tweets` group by day order by avg(like_num) as avg_likes DESC limit 1"""
     job = client.query(q2)
     
     results = job.result()
