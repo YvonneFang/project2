@@ -20,7 +20,7 @@ def q1(client):
     job = client.query(q1)
     
     results = job.result()
-    return list(results.fetchall())
+    return list(results)
 
 # SQL query for Question 2. You must edit this funtion.
 # This function should return a list of days and their corresponding average likes.
