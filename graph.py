@@ -43,7 +43,7 @@ def q3(client):
 # SQL query for Question 4. You must edit this funtion.
 # This function should return a list containing the twitter username of the users having the max indegree and max outdegree.
 def q4(client):
-    q4 = """select src, s_count, dst, d_count from (select src, count(*) as s_count from dataset.edges group by src), (select dst, count(*) as d_count from dataset.edges group by dst) where s_count = (select max(s_count) from (select src, count(*) as s_count from dataset.edges group by src)) And d_count = (select max(d_count) from (select dst, count(*) as d_count from dataset.edges group by dst))""" 
+    q4 = """select src, dst from (select src, count(*) as s_count from dataset.edges group by src), (select dst, count(*) as d_count from dataset.edges group by dst) where s_count = (select max(s_count) as max_outdegree from (select src, count(*) as s_count from dataset.edges group by src)) And d_count = (select max(d_count) as max_indegree from (select dst, count(*) as d_count from dataset.edges group by dst))""" 
     job = client.query(q4)
     
     results = job.result()
@@ -52,8 +52,11 @@ def q4(client):
 # SQL query for Question 5. You must edit this funtion.
 # This function should return a list containing value of the conditional probability.
 def q5(client):
-
-    return []
+    #q5 = """
+    job = client.query(q5)
+    
+    results = job.result()
+    return list
 
 # SQL query for Question 6. You must edit this funtion.
 # This function should return a list containing the value for the number of triangles in the graph.
@@ -167,7 +170,7 @@ def main(pathtocred):
 
     #funcs_to_test = [q1, q2, q3, q4, q5, q6, q7]
     #funcs_to_test = [testquery]
-    funcs_to_test = [q3]
+    funcs_to_test = [q4]
     for func in funcs_to_test:
         rows = func(client)
         print ("\n====%s====" % func.__name__)
