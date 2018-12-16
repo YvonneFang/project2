@@ -25,8 +25,12 @@ def q1(client):
 # SQL query for Question 2. You must edit this funtion.
 # This function should return a list of days and their corresponding average likes.
 def q2(client):
-    #q2 = """select 
-    return []
+    # Select the first 3 letters in create_time, which is the day
+    q2 = """select substr(create_time, 1, 3) as day from `w4111-columbia.graph.tweets` limit 3"""
+    job = client.query(q2)
+    
+    results = job.result()
+    return list(results)
 
 # SQL query for Question 3. You must edit this funtion.
 # This function should return a list of source nodes and destination nodes in the graph.
