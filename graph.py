@@ -6,7 +6,7 @@ uni2 = 'None' # Partner's uni. If you don't have a partner, put None
 
 # Test function
 def testquery(client):
-    q = """select * from `w4111-columbia.graph.tweets` limit 3"""
+    q = """select * from `w4111-columbia.graph.tweets` limit 20"""
     job = client.query(q)
 
     # waits for query to execute and return
@@ -25,7 +25,7 @@ def q1(client):
 # SQL query for Question 2. You must edit this funtion.
 # This function should return a list of days and their corresponding average likes.
 def q2(client):
-    
+    #q2 = """select 
     return []
 
 # SQL query for Question 3. You must edit this funtion.
