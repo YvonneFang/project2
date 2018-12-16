@@ -6,7 +6,7 @@ uni2 = 'None' # Partner's uni. If you don't have a partner, put None
 
 # Test function
 def testquery(client):
-    q = """select * from `w4111-columbia.graph.tweets` limit 20"""
+    q = """select * from `w4111-columbia.graph.tweets` limit 50"""
     job = client.query(q)
 
     # waits for query to execute and return
