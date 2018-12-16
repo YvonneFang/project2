@@ -56,13 +56,16 @@ def q5(client):
     job = client.query(q5)
     
     results = job.result()
-    return list
+    return list(results)
 
 # SQL query for Question 6. You must edit this funtion.
 # This function should return a list containing the value for the number of triangles in the graph.
 def q6(client):
+    q6 = """select count(*) as no_of_triangles from (dataset.edges e1 join dataset.edges e2 on e1.dst = e2.src) join dataset.edges e3 on e2.dst = e3.src"""
+    job = client.query(q6)
 
-    return []
+    results = job.result()
+    return list(results)
 
 # SQL query for Question 7. You must edit this funtion.
 # This function should return a list containing the twitter username and their corresponding PageRank.
@@ -170,7 +173,7 @@ def main(pathtocred):
 
     #funcs_to_test = [q1, q2, q3, q4, q5, q6, q7]
     #funcs_to_test = [testquery]
-    funcs_to_test = [q4]
+    funcs_to_test = [q6]
     for func in funcs_to_test:
         rows = func(client)
         print ("\n====%s====" % func.__name__)
