@@ -35,7 +35,7 @@ def q2(client):
 # SQL query for Question 3. You must edit this funtion.
 # This function should return a list of source nodes and destination nodes in the graph.
 def q3(client):
-    q3 = """create or replace table edges as (select twitter_username as src, Regexp_extract(text,r"[@]([\w_-]+)") as dst from `w4111-columbia.graph.tweets` where Regexp_extract(text,r"([@][\w_-]+)") != '' unique(src,dst) )"""
+    q3 = """create or replace table dataset.edges as (select twitter_username as src, Regexp_extract(text,r"[@]([\w_-]+)") as dst from `w4111-columbia.graph.tweets` where Regexp_extract(text,r"([@][\w_-]+)") != '' )"""
     job = client.query(q3)
     
     return []
