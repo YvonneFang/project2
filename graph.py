@@ -19,8 +19,8 @@ def q1(client):
     q1 = """select id,text from 'w4111-columbia.graph.tweets' where text LIKE '%going live%www.twitch%' OR text LIKE '%www.twitch%going live%'"""
     job = client.query(q1)
     
-    results = job.result
-    return list(results)
+    results = job.result()
+    return list(results.fetchall())
 
 # SQL query for Question 2. You must edit this funtion.
 # This function should return a list of days and their corresponding average likes.
