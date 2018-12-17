@@ -52,7 +52,13 @@ def q4(client):
 # SQL query for Question 5. You must edit this funtion.
 # This function should return a list containing value of the conditional probability.
 def q5(client):
-    #q5 = """
+    #q5 = """create or replace table dataset.indegree as (select dst,count(*) count from dataset.edges group by dst)
+    #create or replace table dataset.avg_likes as (select twitter_username, sum(like_num)/count(*) likes from `w4111-columbia.graph.tweets` group by twitter_username)
+    #create or replace table dataset.popular as (select distinct w.twitter_username from dataset.avg_likes a, dataset.indegree i, `w4111-columbia.graph.tweets` w where a.likes > (select avg(like_num) from `w4111-columbia.graph.tweets`) and i.count > (select avg(count) from dataset.indegree) and w.twitter_username = a.twitter_username and w.twitter_username = i.dst)
+    #create or replace table dataset.unpopular1 as (select distinct w.twitter_username from dataset.avg_likes a, dataset.indegree i, `w4111-columbia.graph.tweets` w where a.likes < (select avg(like_num) from `w4111-columbia.graph.tweets`) and w.twitter_username = a.twitter_username and i.count < (select avg(count) from dataset.indegree) and w.twitter_username = i.dst)
+    #create or replace table dataset.unpopular2 as (select distinct w.twitter_username from dataset.avg_likes a, `w4111-columbia.graph.tweets` w where a.likes < (select avg(like_num) from `w4111-columbia.graph.tweets`) and w.twitter_username = a.twitter_username and w.twitter_username not in (select dst from dataset.indegree))
+    #create or replace table dataset.unpop_mention_pop as (select src,dst from dataset.edges where dst in (select twitter_username from dataset.popular) and src in (select twitter_username from dataset.unpopular1) or src in (select twitter_username from dataset.unpopular2))
+    #select count(m.src)/count(w.twitter_username) popular_unpopular from dataset.unpop_mention_pop m, `w4111-columbia.graph.tweets` w where w.twitter_username in (select twitter_username from dataset.unpopular1) or w.twitter_username in (select twitter_username from dataset.unpopular2)
     job = client.query(q5)
     
     results = job.result()
@@ -173,7 +179,7 @@ def main(pathtocred):
 
     #funcs_to_test = [q1, q2, q3, q4, q5, q6, q7]
     #funcs_to_test = [testquery]
-    funcs_to_test = [q6]
+    funcs_to_test = [q3]
     for func in funcs_to_test:
         rows = func(client)
         print ("\n====%s====" % func.__name__)
